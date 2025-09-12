@@ -1,9 +1,10 @@
 import type { User } from '../types';
 
 // Mock user database
-const mockUser: User = {
+let mockUser: User = {
   id: 'u1',
   name: 'John Doe',
+  email: 'john.doe@example.com',
   token: 'fake-jwt-token-12345'
 };
 
@@ -29,11 +30,12 @@ export const logoutApi = (): Promise<{ message: string }> => {
   });
 };
 
-
-// Points covered:
-
-// Fake login & logout with token
-
-// Simulates API delay with setTimeout
-
-// Errors for invalid credentials
+// Fake update user profile API
+export const updateUserProfileApi = (name: string, email: string): Promise<User> => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      mockUser = { ...mockUser, name, email };
+      resolve(mockUser);
+    }, 600);
+  });
+};

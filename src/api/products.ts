@@ -1,13 +1,5 @@
 import type { Product } from '../types';
 
-export interface Product {
-  id: string;
-  name: string;
-  price: number;
-  inStock: boolean;
-  discount?: number;
-}
-
 const products: Product[] = [
   { id: 'p1', name: 'Shiny Hat', price: 19.99, inStock: true, discount: 10 },
   { id: 'p2', name: 'Puffer Jacket', price: 49.5, inStock: true },

@@ -1,6 +1,7 @@
 // src/hooks/useProducts.ts
 import { useQuery } from '@tanstack/react-query';
-import { fetchProducts, Product } from '../api/products';
+import { fetchProducts } from '../api/products';
+import { Product } from '../types';
 
 export const useProducts = () =>
   useQuery<Product[], Error>({

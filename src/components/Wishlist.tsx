@@ -1,20 +1,16 @@
-// Points: 38-43: Wishlist management, add/remove items, hover effects, responsive, visual feedback
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../store';
+import { removeFromWishlist } from '../store/wishlistSlice';
 import '../styles/Wishlist.css';
 
-interface WishlistItem {
-  id: string;
-  name: string;
-  price: number;
-}
-
 const Wishlist: React.FC = () => {
-  const [items, setItems] = useState<WishlistItem[]>([
-    { id: 'w1', name: 'Leather Boots', price: 129.99 },
-    { id: 'w2', name: 'Silk Scarf', price: 49.5 },
-  ]);
+  const items = useSelector((state: RootState) => state.wishlist.items);
+  const dispatch = useDispatch();
 
-  const removeItem = (id: string) => setItems(items.filter((i) => i.id !== id));
+  const handleRemoveItem = (id: string) => {
+    dispatch(removeFromWishlist(id));
+  };
 
   return (
     <div className="wishlist-card">
@@ -25,9 +21,9 @@ const Wishlist: React.FC = () => {
           <div className="wishlist-item" key={item.id}>
             <div className="item-info">
               <div className="item-name">{item.name}</div>
-              <div className="item-price">${item.price.toFixed(2)}</div>
+              <div className="item-price">${item.price?.toFixed(2)}</div>
             </div>
-            <button className="remove-btn" onClick={() => removeItem(item.id)}>Remove</button>
+            <button className="remove-btn" onClick={() => handleRemoveItem(item.id)}>Remove</button>
           </div>
         ))}
       </div>

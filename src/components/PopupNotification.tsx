@@ -2,11 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import './PopupNotification.css';
 
-interface Notification {
-  id: string;
-  message: string;
-}
-
 export default function PopupNotification({ message }: { message: string }) {
   const [visible, setVisible] = useState(true);
 

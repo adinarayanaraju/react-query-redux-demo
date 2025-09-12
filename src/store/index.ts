@@ -1,7 +1,7 @@
 import { configureStore, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { cartSlice } from './cartSlice';
 
-interface MenuItem {
+export interface MenuItem {
   id: string;
   name: string;
   visible: boolean;
@@ -15,18 +15,53 @@ const menuSlice = createSlice({
     setMenuItems: (state, action: PayloadAction<MenuItem[]>) => {
       state.items = action.payload;
     },
-    updateMenuItem: (state, action: PayloadAction<MenuItem>) => {
-      const index = state.items.findIndex((i) => i.id === action.payload.id);
-      if (index !== -1) state.items[index] = action.payload;
+    addMenuItem: (state, action: PayloadAction<MenuItem>) => {
+      state.items.push(action.payload);
+    },
+    removeMenuItem: (state, action: PayloadAction<string>) => {
+      state.items = state.items.filter(item => item.id !== action.payload);
+    },
+    toggleMenuVisibility: (state, action: PayloadAction<string>) => {
+      const item = state.items.find(item => item.id === action.payload);
+      if (item) {
+        item.visible = !item.visible;
+      }
+    },
+    reorderMenuItems: (state, action: PayloadAction<{ startIndex: number, endIndex: number }>) => {
+      const { startIndex, endIndex } = action.payload;
+      const [removed] = state.items.splice(startIndex, 1);
+      state.items.splice(endIndex, 0, removed);
     },
   },
 });
 
-export const { setMenuItems, updateMenuItem } = menuSlice.actions;
+export const { setMenuItems, addMenuItem, removeMenuItem, toggleMenuVisibility, reorderMenuItems } = menuSlice.actions;
+
+import { wishlistSlice } from './wishlistSlice';
+
+const uiSlice = createSlice({
+  name: 'ui',
+  initialState: { cartUI: { isOpen: false } },
+  reducers: {
+    openCart: (state) => {
+      state.cartUI.isOpen = true;
+    },
+    closeCart: (state) => {
+      state.cartUI.isOpen = false;
+    },
+  }
+});
 
 export const store = configureStore({
-  reducer: { cart: cartSlice.reducer, menu: menuSlice.reducer },
+  reducer: {
+    cart: cartSlice.reducer,
+    menu: menuSlice.reducer,
+    wishlist: wishlistSlice.reducer,
+    ui: uiSlice.reducer,
+  },
 });
+
+export const { openCart, closeCart } = uiSlice.actions;
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

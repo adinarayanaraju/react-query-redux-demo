@@ -9,13 +9,13 @@ export function useCart() {
   const queryClient = useQueryClient();
 
   const addMutation = useMutation({
-    mutationFn: (item: { id: string; name: string }) =>
+    mutationFn: (_item: { id: string; name: string }) =>
       new Promise((res) => setTimeout(() => res({ ok: true }), 300)),
     onMutate: async (item) => {
       dispatch(addItem(item));
       return {};
     },
-    onError: (err, item: any) => {
+    onError: (err, item: { id: string; name: string }) => {
       dispatch(removeItem(item.id));
     },
     onSettled: () => {

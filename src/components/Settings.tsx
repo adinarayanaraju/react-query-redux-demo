@@ -1,57 +1,45 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../store';
+import { addMenuItem, removeMenuItem, toggleMenuVisibility, reorderMenuItems } from '../store/index';
 import "../styles/Settings.css";       
 import "../styles/HamburgerMenu.css"; 
-
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-
-interface MenuItem {
-  id: string;
-  name: string;
-  visible: boolean;
-  role?: 'admin' | 'user';
-}
+import { DragDropContext, Droppable, Draggable, DropResult } from '@hello-pangea/dnd';
 
 export default function Settings() {
-  const [menuItems, setMenuItems] = useState<MenuItem[]>([
-    { id: 'dashboard', name: 'Dashboard', visible: true, role: 'admin' },
-    { id: 'products', name: 'Products', visible: true, role: 'admin' },
-    { id: 'orders', name: 'Orders', visible: true, role: 'user' },
-  ]);
+  const menuItems = useSelector((state: RootState) => state.menu.items);
+  const dispatch = useDispatch();
 
   const [newMenuName, setNewMenuName] = useState('');
   const [newMenuRole, setNewMenuRole] = useState<'admin' | 'user'>('user');
 
-  const addMenuItem = () => {
+  const handleAddMenuItem = () => {
     if (!newMenuName.trim()) return;
-    setMenuItems((prev) => [
-      ...prev,
-      {
-        id: newMenuName.toLowerCase().replace(/\s+/g, '-'),
-        name: newMenuName,
-        visible: true,
-        role: newMenuRole,
-      },
-    ]);
+    const newItem = {
+      id: newMenuName.toLowerCase().replace(/\s+/g, '-'),
+      name: newMenuName,
+      visible: true,
+      role: newMenuRole,
+    };
+    dispatch(addMenuItem(newItem));
     setNewMenuName('');
   };
 
-  const toggleVisibility = (id: string) => {
-    setMenuItems((prev) =>
-      prev.map((item) => (item.id === id ? { ...item, visible: !item.visible } : item))
-    );
+  const handleToggleVisibility = (id: string) => {
+    dispatch(toggleMenuVisibility(id));
   };
 
-  const removeItem = (id: string) => {
+  const handleRemoveItem = (id: string) => {
     if (!window.confirm('Are you sure you want to remove this menu?')) return;
-    setMenuItems((prev) => prev.filter((item) => item.id !== id));
+    dispatch(removeMenuItem(id));
   };
 
-  const onDragEnd = (result: any) => {
+  const onDragEnd = (result: DropResult) => {
     if (!result.destination) return;
-    const items = Array.from(menuItems);
-    const [reordered] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reordered);
-    setMenuItems(items);
+    dispatch(reorderMenuItems({
+      startIndex: result.source.index,
+      endIndex: result.destination.index,
+    }));
   };
 
   return (
@@ -72,7 +60,7 @@ export default function Settings() {
           <option value="user">User</option>
           <option value="admin">Admin</option>
         </select>
-        <button className="btn" onClick={addMenuItem}>
+        <button className="btn" onClick={handleAddMenuItem}>
           Add Menu
         </button>
       </div>
@@ -94,10 +82,10 @@ export default function Settings() {
                         {item.name} <small>({item.role})</small>
                       </span>
                       <div className="menu-actions">
-                        <button className="btn-small" onClick={() => toggleVisibility(item.id)}>
+                        <button className="btn-small" onClick={() => handleToggleVisibility(item.id)}>
                           {item.visible ? 'Hide' : 'Show'}
                         </button>
-                        <button className="btn-small btn-danger" onClick={() => removeItem(item.id)}>
+                        <button className="btn-small btn-danger" onClick={() => handleRemoveItem(item.id)}>
                           Remove
                         </button>
                       </div>
