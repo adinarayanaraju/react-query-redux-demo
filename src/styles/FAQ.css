@@ -1,0 +1,14 @@
+.faq .faq-item {
+  margin-bottom: 6px;
+}
+.faq .question {
+  cursor: pointer;
+  padding: 6px;
+  background: #f0f4f8;
+  border-radius: 4px;
+}
+.faq .answer {
+  padding: 6px;
+  border-left: 2px solid #3498db;
+  background: #ecf5ff;
+}

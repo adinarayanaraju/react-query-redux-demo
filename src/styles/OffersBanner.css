@@ -1,0 +1,19 @@
+.offers-banner {
+  display: flex;
+  overflow-x: auto;
+  padding: 8px;
+  background: #ffeaa7;
+  gap: 10px;
+}
+.offer-item {
+  background: #fdcb6e;
+  padding: 6px 12px;
+  border-radius: 8px;
+  white-space: nowrap;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.offer-item:hover {
+  transform: scale(1.05);
+}

@@ -1,0 +1,36 @@
+.chat-support .chat-window {
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 6px;
+  background: #f8f9fa;
+  margin-bottom: 6px;
+}
+.chat-support .message {
+  margin-bottom: 4px;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+.chat-support .message.user {
+  background: #3498db;
+  color: white;
+  align-self: flex-end;
+}
+.chat-support .message.agent {
+  background: #eee;
+}
+.chat-support input {
+  width: 70%;
+  padding: 6px;
+  margin-right: 4px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+.chat-support button {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: none;
+  background: #2ecc71;
+  color: white;
+  cursor: pointer;
+}

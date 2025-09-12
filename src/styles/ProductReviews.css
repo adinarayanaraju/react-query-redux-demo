@@ -1,0 +1,10 @@
+.product-reviews .review {
+  border-bottom: 1px solid #eee;
+  padding: 6px 0;
+}
+.product-reviews .user {
+  font-weight: bold;
+}
+.product-reviews .rating {
+  color: #f1c40f;
+}

@@ -1,0 +1,6 @@
+.order-detail { padding:16px; border-radius:12px; background:#fff; box-shadow:0 4px 12px rgba(0,0,0,0.06);}
+.order-detail h2 { margin-bottom:12px; }
+.order-detail .items { margin-top:12px; }
+.order-detail .item { display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid #eee; }
+.order-detail .total { margin-top:12px; font-weight:600; text-align:right; }
+.loader { text-align:center; padding:20px; color:#4f46e5; }

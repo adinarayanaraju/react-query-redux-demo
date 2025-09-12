@@ -1,0 +1,24 @@
+.order-history {
+  padding: 16px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+.order-history h2 {
+  margin-bottom: 12px;
+}
+.order-history ul {
+  list-style:none;
+  padding:0;
+}
+.order-history li {
+  display:flex;
+  justify-content:space-between;
+  padding:8px 0;
+  border-bottom:1px solid #eee;
+}
+.loader {
+  text-align:center;
+  padding:20px;
+  color:#4f46e5;
+}

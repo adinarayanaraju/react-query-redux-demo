@@ -1,0 +1,12 @@
+.help-center ul {
+  list-style: none;
+  padding: 0;
+}
+.help-center li {
+  padding: 6px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+.help-center li:hover {
+  background: #f0f4f8;
+}

@@ -1,0 +1,16 @@
+.category-menu button {
+  margin-right: 6px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #f0f4f8;
+  cursor: pointer;
+}
+.category-menu button.active {
+  background: #3498db;
+  color: #fff;
+  border-color: #2980b9;
+}
+.category-menu button:hover {
+  background: #e0e7ef;
+}

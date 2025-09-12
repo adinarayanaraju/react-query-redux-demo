@@ -1,0 +1,204 @@
+/* Global Styles for Mini Shop */
+
+* {
+  box-sizing: border-box;
+  font-family: Inter, Roboto, -apple-system, 'Segoe UI', sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f5f7fb;
+  color: #0f1724;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: linear-gradient(90deg, #4f46e5, #06b6d4);
+  color: white;
+}
+
+.app .container {
+  padding: 24px;
+  max-width: 1000px;
+  margin: 24px auto;
+}
+
+.card {
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(10, 10, 10, 0.06);
+}
+
+.grid {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.product {
+  width: 220px;
+  border: 1px solid #e6eef7;
+  padding: 12px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-name {
+  font-weight: 600;
+}
+
+.btn {
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background: #4f46e5;
+  color: white;
+  border: none;
+}
+
+.cart-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+.badge {
+  background: #ffd166;
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-left: 8px;
+  font-weight: 700;
+}
+
+.drawer {
+  position: fixed;
+  right: -420px;
+  top: 0;
+  height: 100vh;
+  width: 420px;
+  background: white;
+  box-shadow: -20px 0 40px rgba(2, 6, 23, 0.12);
+  transition: right 300ms ease;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+}
+
+.drawer.open {
+  right: 0;
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #eef2f8;
+}
+
+.drawer-body {
+  padding: 16px;
+  overflow: auto;
+  flex: 1;
+}
+
+.close {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.cart-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #f0f6fb;
+}
+
+.cart-name {
+  font-weight: 600;
+}
+
+.cart-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.qty {
+  width: 64px;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #e6eef7;
+}
+
+.cart-right {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+}
+
+.price {
+  font-weight: 700;
+}
+
+.avail {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.link {
+  background: transparent;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+}
+
+.muted {
+  color: #64748b;
+  padding: 24px 0;
+}
+
+.summary {
+  border-top: 1px dashed #eef2f8;
+  padding-top: 12px;
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}

@@ -1,0 +1,19 @@
+.checkout-form input {
+  display: block;
+  margin-bottom: 6px;
+  padding: 6px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+.checkout-form .btn {
+  padding: 6px 12px;
+  background: #2ecc71;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.checkout-form .btn:hover {
+  background: #27ae60;
+}

@@ -1,0 +1,22 @@
+Advanced E-commerce Components (20)
+#	Component	Features / Points Implemented
+1	OrderHistory.tsx	List past orders with date, status, and total.
+2	OrderDetail.tsx	Shows detailed info about a single order (items, qty, price).
+3	OrderTracking.tsx	Track order status: pending, shipped, delivered, cancelled.
+4	UserProfile.tsx	View and edit user info (name, email, avatar).
+5	AddressBook.tsx	Manage multiple shipping addresses.
+6	Wishlist.tsx	Add/remove favorite products, saved for later.
+7	SearchBar.tsx	Search products with live suggestions.
+8	ProductFilters.tsx	Filter products by category, price, availability.
+9	ProductRating.tsx	Rate a product, show stars, average rating.
+10	ProductReview.tsx	Add reviews and view reviews for products.
+11	Notifications.tsx	Real-time toast messages for cart, login, orders.
+12	PromoBanner.tsx	Display active promotions or discounts.
+13	CategoryList.tsx	List product categories in sidebar or header.
+14	Pagination.tsx	Paginate product list for large catalogs.
+15	Breadcrumb.tsx	Show navigation path (Home > Category > Product).
+16	Loader.tsx	Reusable spinner/loading indicator for async API calls.
+17	ErrorBoundary.tsx	Catch component errors and display fallback UI.
+18	CheckoutForm.tsx	Collect payment info, shipping, and summary.
+19	PaymentStatus.tsx	Show order payment status (success, failure).
+20	FAQAccordion.tsx	Show frequently asked questions with accordion toggle.

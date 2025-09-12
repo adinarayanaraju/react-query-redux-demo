@@ -1,0 +1,13 @@
+.order-summary ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 8px;
+}
+.order-summary li {
+  padding: 4px 0;
+  border-bottom: 1px solid #eee;
+}
+.order-summary .total {
+  font-weight: bold;
+  margin-top: 6px;
+}

@@ -1,0 +1,11 @@
+.discounts {
+  margin: 12px 0;
+}
+.applied {
+  color: #2ecc71;
+  font-weight: bold;
+}
+.none {
+  color: #7f8c8d;
+  font-style: italic;
+}

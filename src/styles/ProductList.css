@@ -1,0 +1,53 @@
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.product-card {
+  position: relative;
+  border: 1px solid #ddd;
+  padding: 12px;
+  border-radius: 8px;
+  width: 180px;
+  transition: transform 0.2s;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+}
+
+.product-flyout {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  margin-left: 8px;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 6px;
+  width: 200px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+  font-size: 0.85rem;
+}
+
+.product-card:hover .product-flyout {
+  display: block;
+}
+
+.out-of-stock {
+  color: red;
+  font-weight: bold;
+}
+
+.product-discount {
+  color: green;
+  font-weight: bold;
+}
+
+.restricted-badge {
+  color: orange;
+  font-weight: bold;
+}

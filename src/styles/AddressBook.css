@@ -1,0 +1,6 @@
+.address-book { padding:16px; border-radius:12px; background:#fff; box-shadow:0 4px 12px rgba(0,0,0,0.06); }
+.address-book h2 { margin-bottom:12px; }
+.address-book ul { list-style:none; padding:0; margin-bottom:12px; }
+.address-book li { padding:6px 0; border-bottom:1px solid #eee; }
+input { padding:8px; border-radius:6px; border:1px solid #e6eef7; width:calc(100% - 20px); margin-bottom:8px; }
+.btn.primary { background:#4f46e5; color:#fff; border:none; padding:8px 12px; border-radius:8px; cursor:pointer; }
