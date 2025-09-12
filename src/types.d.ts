@@ -6,8 +6,9 @@
 export interface Product {
   id: string;
   name: string;
-  price?: number;
-  inStock?: boolean;
+  price: number;
+  inStock: boolean;
+  discount?: number;
 }
 
 // Cart Item type
@@ -23,6 +24,7 @@ export interface CartItem {
 export interface User {
   id: string;
   name: string;
+  email: string;
   token: string;
 }
 

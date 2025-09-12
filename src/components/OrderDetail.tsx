@@ -1,30 +1,39 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { fetchOrderDetail } from '../api/orders';
-import './OrderDetail.css';
+import { useParams } from 'react-router-dom';
+import { fetchOrderById } from '../api/orders';
+import type { Order } from '../api/orders';
+import '../styles/OrderDetail.css';
 
-interface Props { orderId: string; }
-
-export default function OrderDetail({ orderId }: Props) {
-  const { data: order, isLoading } = useQuery(['orderDetail', orderId], () => fetchOrderDetail(orderId));
+export default function OrderDetail() {
+  const { id } = useParams<{ id: string }>();
+  const { data: order, isLoading, isError } = useQuery<Order | undefined, Error>({
+    queryKey: ['order', id],
+    queryFn: () => fetchOrderById(id!),
+    enabled: !!id,
+  });
 
   if (isLoading) return <div className="loader">Loading order...</div>;
-  if (!order) return <div>No order found.</div>;
+  if (isError) return <div className="error">Failed to load order details.</div>;
+  if (!order) return <div className="card">Order not found.</div>;
 
   return (
     <div className="order-detail card">
       <h2>Order #{order.id}</h2>
-      <div>Date: {order.date}</div>
-      <div>Status: {order.status}</div>
-      <div className="items">
-        {order.items.map((item: any) => (
-          <div key={item.id} className="item">
+      <div className="order-meta">
+        <span>Date: {order.date}</span>
+        <span>Status: {order.status}</span>
+      </div>
+      <h3>Items</h3>
+      <ul className="item-list">
+        {order.items.map((item) => (
+          <li key={item.id} className="item">
             <span>{item.name}</span>
             <span>Qty: {item.qty}</span>
-            <span>${item.price.toFixed(2)}</span>
-          </div>
+            <span>${item.price?.toFixed(2)}</span>
+          </li>
         ))}
-      </div>
+      </ul>
       <div className="total">Total: ${order.total.toFixed(2)}</div>
     </div>
   );

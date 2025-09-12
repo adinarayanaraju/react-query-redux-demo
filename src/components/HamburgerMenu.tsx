@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import "../styles/Settings.css";       
 import "../styles/HamburgerMenu.css";  
 
 import { useSelector } from 'react-redux';
-import { RootState } from '../store';
+import { RootState, MenuItem } from '../store';
 import { useRestrictedProducts } from '../hooks/useRestrictedProducts';
 
 export default function HamburgerMenu() {
@@ -27,7 +27,7 @@ export default function HamburgerMenu() {
       </button>
       <div className={`hamburger-menu ${open ? 'open' : ''}`}>
         <ul>
-          {items.map((item: any) => {
+          {items.filter(item => item.visible).map((item: MenuItem) => {
             const restrictedItem = isRestricted(item.id);
             return restrictedItem ? (
               <li key={item.id} className="restricted">

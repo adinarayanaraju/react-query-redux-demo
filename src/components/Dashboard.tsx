@@ -1,10 +1,26 @@
 import React from "react";
+import { useQuery } from '@tanstack/react-query';
+import { fetchOrders } from '../api/orders';
+import { fetchProducts } from '../api/products';
+import './Dashboard.css';
 
 export default function Dashboard() {
+  const { data: orders = [] } = useQuery({ queryKey: ['orders'], queryFn: fetchOrders });
+  const { data: products = [] } = useQuery({ queryKey: ['products'], queryFn: fetchProducts });
+
   return (
-    <div>
+    <div className="dashboard card">
       <h2>Dashboard</h2>
-      <p>This is your dashboard.</p>
+      <div className="stats-grid">
+        <div className="stat-card">
+          <h3>Total Orders</h3>
+          <p>{orders.length}</p>
+        </div>
+        <div className="stat-card">
+          <h3>Total Products</h3>
+          <p>{products.length}</p>
+        </div>
+      </div>
     </div>
   );
 }

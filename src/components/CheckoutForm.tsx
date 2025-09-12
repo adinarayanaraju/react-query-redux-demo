@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import './CheckoutForm.css';
 
-export default function CheckoutForm({ onSubmit }: { onSubmit: (data: any) => void }) {
-  const [form, setForm] = useState({ name: '', email: '', phone: '' });
+interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+}
+
+export default function CheckoutForm({ onSubmit }: { onSubmit: (data: FormData) => void }) {
+  const [form, setForm] = useState<FormData>({ name: '', email: '', phone: '' });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
