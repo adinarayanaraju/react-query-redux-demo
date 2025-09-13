@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './AddressBook.css';
+import '../styles/AddressBook.css';
 
 export default function AddressBook() {
   const [addresses, setAddresses] = useState(['123 Main St, City, Country']);

@@ -1,5 +1,5 @@
 import React from 'react';
-import './OrderSummary.css';
+import '../styles/OrderSummary.css';
 
 interface Item {
   name: string;

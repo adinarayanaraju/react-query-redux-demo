@@ -15,9 +15,13 @@ export default function LoginModal({ isOpen, onClose }: Props) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await login(username, password);
-    onClose();
-    alert('Logged in successfully!');
+    try {
+      await login(username, password);
+      onClose();
+      alert('Logged in successfully!');
+    } catch (_error) {
+      alert('Login failed. Please check your username and password.');
+    }
   };
 
   if (!isOpen) return null;

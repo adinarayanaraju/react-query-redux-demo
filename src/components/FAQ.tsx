@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './FAQ.css';
+import '../styles/FAQ.css';
 
 const faqs = [
   { question: 'How to place an order?', answer: 'Select a product and checkout.' },

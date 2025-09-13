@@ -1,5 +1,5 @@
 import React from 'react';
-import './HelpCenter.css';
+import '../styles/HelpCenter.css';
 
 export default function HelpCenter() {
   return (

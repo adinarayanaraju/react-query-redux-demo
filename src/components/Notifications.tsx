@@ -11,11 +11,16 @@ interface Notification {
 }
 
 export default function Notifications() {
-  const { data: notifications } = useQuery<Notification[]>(['notifications'], fetchNotifications);
+  const { data: notifications } = useQuery<Notification[]>({
+    queryKey: ['notifications'],
+    queryFn: fetchNotifications
+  });
   const [visible, setVisible] = useState<Notification[]>([]);
 
   useEffect(() => {
-    if (notifications) setVisible(notifications.slice(0, 5));
+    if (notifications) {
+      setVisible(notifications.slice(0, 5));
+    }
   }, [notifications]);
 
   const dismiss = (id: string) => {

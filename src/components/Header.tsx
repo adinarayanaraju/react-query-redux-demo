@@ -1,13 +1,12 @@
 // src/components/Header.tsx
 import React, { useState } from 'react';
-import { useCartUI } from '../context/CartUIContext';
-import { useSelector } from 'react-redux';
-import { RootState } from '../store';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, openCart } from '../store';
 import HamburgerMenu from './HamburgerMenu';
 import './Header.css';
 
 export default function Header() {
-  const { open } = useCartUI();
+  const dispatch = useDispatch();
   const items = useSelector((s: RootState) => s.cart.items);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -23,12 +22,12 @@ export default function Header() {
       </div>
 
       <div className="header-right">
-        <button className="cart-btn" onClick={open}>
+        <button className="cart-btn" onClick={() => dispatch(openCart())}>
           🛒 Cart <span className="badge">{items.length}</span>
         </button>
       </div>
 
-      <HamburgerMenu isOpen={isMenuOpen} toggleMenu={toggleMenu} />
+      <HamburgerMenu />
     </header>
   );
 }

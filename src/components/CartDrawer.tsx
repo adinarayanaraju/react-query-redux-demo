@@ -1,23 +1,25 @@
 // src/components/CartDrawer.tsx
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../store';
+import { RootState, closeCart } from '../store';
 import { setQty, removeItem, clearCart } from '../store/cartSlice';
 import { usePrices } from '../hooks/usePrices';
 import { useAvailability } from '../hooks/useAvailability';
 import './CartDrawer.css';
 
 export default function CartDrawer() {
-  const { isOpen, close } = useSelector((state: RootState) => state.ui.cartUI); // Assuming CartUI stored in Redux
+  const { isOpen } = useSelector((state: RootState) => state.ui.cartUI);
   const items = useSelector((s: RootState) => s.cart.items);
   const dispatch = useDispatch();
+
+  const handleClose = () => dispatch(closeCart());
 
   const ids = items.map((i) => i.id);
   const { data: pricesData, isLoading: pricesLoading } = usePrices(ids);
   const { data: availData } = useAvailability(ids);
 
-  const prices = pricesData?.prices ?? {};
-  const avail = availData?.avail ?? {};
+  const prices = pricesData ?? {};
+  const avail = availData ?? {};
 
   const subtotal = items.reduce((sum, it) => sum + (prices[it.id] ?? 0) * it.qty, 0);
 
@@ -25,7 +27,7 @@ export default function CartDrawer() {
     <div className={`drawer ${isOpen ? 'open' : ''}`}>
       <div className="drawer-header">
         <h3>Your Cart</h3>
-        <button className="close" onClick={close}>
+        <button className="close" onClick={handleClose}>
           ×
         </button>
       </div>

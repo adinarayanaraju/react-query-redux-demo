@@ -1,10 +1,10 @@
 import React from "react";
+import OrderHistory from "./OrderHistory";
 
 export default function OrdersPage() {
   return (
     <div>
-      <h2>Orders</h2>
-      <p>Here you will see all orders.</p>
+      <OrderHistory />
     </div>
   );
 }
