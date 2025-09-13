@@ -1,28 +1,36 @@
 import type { Product } from '../types';
 
 const products: Product[] = [
-  { id: 'p1', name: 'Shiny Hat', price: 19.99, inStock: true, discount: 10 },
-  { id: 'p2', name: 'Puffer Jacket', price: 49.5, inStock: true },
-  { id: 'p3', name: 'Sticker Pack', price: 9.75, inStock: false },
-  { id: 'p4', name: 'Premium Jacket', price: 99.99, inStock: true, discount: 20 },
+  { id: 'p1', name: 'Shiny Hat', price: 19.99, inStock: 10, discount: 10 },
+  { id: 'p2', name: 'Puffer Jacket', price: 49.5, inStock: 5 },
+  { id: 'p3', name: 'Sticker Pack', price: 9.75, inStock: 0 },
+  { id: 'p4', name: 'Premium Jacket', price: 99.99, inStock: 3, discount: 20 },
 ];
+
+// Generate more products
+for (let i = 5; i <= 30; i++) {
+  products.push({
+    id: `p${i}`,
+    name: `Product ${i}`,
+    price: Math.floor(Math.random() * 100) + 1,
+    inStock: Math.floor(Math.random() * 20),
+    discount: Math.random() > 0.7 ? Math.floor(Math.random() * 20) + 5 : undefined,
+    demand: Math.floor(Math.random() * 10) + 1,
+  });
+}
+
 // Mock prices
-const mockPrices: Record<string, number> = {
-  p1: 19.99,
-  p2: 49.5,
-  p3: 9.75,
-  p4: 79.99,
-  p5: 24.99
-};
+const mockPrices: Record<string, number> = {};
+products.forEach(p => {
+  mockPrices[p.id] = p.price;
+});
+
 
 // Mock availability
-const mockAvailability: Record<string, boolean> = {
-  p1: true,
-  p2: true,
-  p3: false,
-  p4: true,
-  p5: true
-};
+const mockAvailability: Record<string, number> = {};
+products.forEach(p => {
+  mockAvailability[p.id] = p.inStock;
+});
 
 // Fetch products list
 export const fetchProducts = () =>
@@ -40,11 +48,11 @@ export const fetchPrices = (ids: string[]): Promise<Record<string, number>> => {
 };
 
 // Check availability for given product IDs
-export const fetchAvailability = (ids: string[]): Promise<Record<string, boolean>> => {
+export const fetchAvailability = (ids: string[]): Promise<Record<string, number>> => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      const avail: Record<string, boolean> = {};
-      ids.forEach((id) => (avail[id] = mockAvailability[id] ?? false));
+      const avail: Record<string, number> = {};
+      ids.forEach((id) => (avail[id] = mockAvailability[id] ?? 0));
       resolve(avail);
     }, 400);
   });

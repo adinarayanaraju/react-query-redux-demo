@@ -5,6 +5,7 @@ let mockUser: User = {
   id: 'u1',
   name: 'John Doe',
   email: 'john.doe@example.com',
+  phone: '123-456-7890',
   token: 'fake-jwt-token-12345'
 };
 
@@ -31,10 +32,10 @@ export const logoutApi = (): Promise<{ message: string }> => {
 };
 
 // Fake update user profile API
-export const updateUserProfileApi = (name: string, email: string): Promise<User> => {
+export const updateUserProfileApi = (name: string, email: string, phone: string): Promise<User> => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      mockUser = { ...mockUser, name, email };
+      mockUser = { ...mockUser, name, email, phone };
       resolve(mockUser);
     }, 600);
   });

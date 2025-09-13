@@ -6,11 +6,13 @@ export default function UserProfile() {
   const { user, updateUser } = useAuth();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
 
   useEffect(() => {
     if (user) {
       setName(user.name);
       setEmail(user.email);
+      setPhone(user.phone);
     }
   }, [user]);
 
@@ -20,7 +22,7 @@ export default function UserProfile() {
 
   const handleSave = async () => {
     try {
-      await updateUser(name, email);
+      await updateUser(name, email, phone);
       alert('Profile saved successfully!');
     } catch (_error) {
       alert('Failed to save profile.');
@@ -37,6 +39,10 @@ export default function UserProfile() {
       <div className="field">
         <label>Email:</label>
         <input value={email} onChange={(e) => setEmail(e.target.value)} />
+      </div>
+      <div className="field">
+        <label>Phone:</label>
+        <input value={phone} onChange={(e) => setPhone(e.target.value)} />
       </div>
       <button className="btn primary" onClick={handleSave}>Save</button>
     </div>

@@ -6,6 +6,7 @@ import { addToWishlist } from '../store/wishlistSlice';
 import { useProducts } from '../hooks/useProducts';
 import { useRestrictedProducts } from '../hooks/useRestrictedProducts';
 import { Product } from '../types';
+import { Link } from 'react-router-dom';
 import '../styles/ProductList.css';
 
 export default function ProductList() {
@@ -44,6 +45,7 @@ export default function ProductList() {
             >
               {isInWishlist(p.id) ? '♥ In Wishlist' : '♡ Add to Wishlist'}
             </button>
+            <Link to={`/reviews/${p.id}`} className="btn-link">Reviews</Link>
           </div>
 
           {/* Flyout preview */}

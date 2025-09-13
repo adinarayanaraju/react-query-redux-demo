@@ -3,11 +3,12 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, openCart } from '../store';
 import HamburgerMenu from './HamburgerMenu';
-import './Header.css';
+import '../styles/Header.css';
 
 export default function Header() {
   const dispatch = useDispatch();
   const items = useSelector((s: RootState) => s.cart.items);
+  const logoUrl = useSelector((s: RootState) => s.siteConfig.logoUrl);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
@@ -18,6 +19,7 @@ export default function Header() {
         <button className="hamburger-btn" onClick={toggleMenu}>
           ☰
         </button>
+        <img src={logoUrl} alt="logo" className="logo" />
         <h1>Mini Shop</h1>
       </div>
 

@@ -7,8 +7,9 @@ export interface Product {
   id: string;
   name: string;
   price: number;
-  inStock: boolean;
+  inStock: number;
   discount?: number;
+  demand?: number;
 }
 
 // Cart Item type
@@ -17,7 +18,7 @@ export interface CartItem {
   name: string;
   qty: number;
   price: number;
-  inStock: boolean;
+  inStock: number;
 }
 
 // Auth type
@@ -25,7 +26,9 @@ export interface User {
   id: string;
   name: string;
   email: string;
+  phone: string;
   token: string;
+  role?: 'admin' | 'user';
 }
 
 

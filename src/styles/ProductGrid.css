@@ -1,0 +1,30 @@
+.product-grid-dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.product-card-dashboard {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: box-shadow 0.3s;
+}
+
+.product-card-dashboard:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.product-card-dashboard.low-stock {
+  border-left: 5px solid orange;
+}
+
+.product-card-dashboard.high-demand {
+  border-right: 5px solid red;
+}
+
+.product-card-dashboard h4 {
+  margin-top: 0;
+}

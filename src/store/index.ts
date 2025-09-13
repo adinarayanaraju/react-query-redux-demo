@@ -8,12 +8,23 @@ export interface MenuItem {
   role?: 'admin' | 'user';
 }
 
+export interface RouteItem extends MenuItem {}
+
 const menuSlice = createSlice({
   name: 'menu',
-  initialState: { items: [] as MenuItem[] },
+  initialState: { items: [] as MenuItem[], routes: [] as RouteItem[] },
   reducers: {
     setMenuItems: (state, action: PayloadAction<MenuItem[]>) => {
       state.items = action.payload;
+      if (state.routes.length === 0) {
+        state.routes = action.payload.map(item => ({...item}));
+      }
+    },
+    toggleRouteVisibility: (state, action: PayloadAction<string>) => {
+      const route = state.routes.find(route => route.id === action.payload);
+      if (route) {
+        route.visible = !route.visible;
+      }
     },
     addMenuItem: (state, action: PayloadAction<MenuItem>) => {
       state.items.push(action.payload);
@@ -35,9 +46,18 @@ const menuSlice = createSlice({
   },
 });
 
-export const { setMenuItems, addMenuItem, removeMenuItem, toggleMenuVisibility, reorderMenuItems } = menuSlice.actions;
+export const { setMenuItems, addMenuItem, removeMenuItem, toggleMenuVisibility, reorderMenuItems, toggleRouteVisibility } = menuSlice.actions;
 
 import { wishlistSlice } from './wishlistSlice';
+import { themeSlice } from './themeSlice';
+import { productSlice } from './productSlice';
+import { addressSlice } from './addressSlice';
+import { notificationSettingsSlice } from './notificationSettingsSlice';
+import { paymentSlice } from './paymentSlice';
+import { personalizationSlice } from './personalizationSlice';
+import { shippingSlice } from './shippingSlice';
+import { usersSlice } from './usersSlice';
+import { siteConfigSlice } from './siteConfigSlice';
 
 const uiSlice = createSlice({
   name: 'ui',
@@ -58,6 +78,15 @@ export const store = configureStore({
     menu: menuSlice.reducer,
     wishlist: wishlistSlice.reducer,
     ui: uiSlice.reducer,
+    theme: themeSlice.reducer,
+    products: productSlice.reducer,
+    addresses: addressSlice.reducer,
+    notificationSettings: notificationSettingsSlice.reducer,
+    payment: paymentSlice.reducer,
+    personalization: personalizationSlice.reducer,
+    shipping: shippingSlice.reducer,
+    users: usersSlice.reducer,
+    siteConfig: siteConfigSlice.reducer,
   },
 });
 

@@ -19,7 +19,7 @@ export default function CartDrawer() {
   const { data: availData } = useAvailability(ids);
 
   const prices = pricesData ?? {};
-  const avail = availData ?? {};
+  const avail: Record<string, number> = availData ?? {};
 
   const subtotal = items.reduce((sum, it) => sum + (prices[it.id] ?? 0) * it.qty, 0);
 
@@ -54,7 +54,7 @@ export default function CartDrawer() {
                 {/* Flyout preview for each cart item */}
                 <div className="cart-flyout">
                   <div>Price: ${prices[it.id]?.toFixed(2) ?? '...'}</div>
-                  <div>Stock: {avail[it.id] ? 'Available' : 'Out of stock'}</div>
+                  <div>Stock: {avail[it.id] > 0 ? 'Available' : 'Out of stock'}</div>
                   {prices[it.id] && it.qty > 1 && (
                     <div>Line Total: ${(prices[it.id] * it.qty).toFixed(2)}</div>
                   )}
@@ -66,7 +66,7 @@ export default function CartDrawer() {
                 <div className="price">
                   {pricesLoading ? '...' : `$${(prices[it.id] ?? 0).toFixed(2)}`}
                 </div>
-                <div className="avail">{avail[it.id] === false ? 'Out of stock' : 'In stock'}</div>
+                <div className="avail">{avail[it.id] > 0 ? 'In stock' : 'Out of stock'}</div>
                 <button className="link" onClick={() => dispatch(removeItem(it.id))}>
                   Remove
                 </button>

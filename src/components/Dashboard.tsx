@@ -2,7 +2,8 @@ import React from "react";
 import { useQuery } from '@tanstack/react-query';
 import { fetchOrders } from '../api/orders';
 import { fetchProducts } from '../api/products';
-import './Dashboard.css';
+import ProductGrid from './ProductGrid';
+import '../styles/Dashboard.css';
 
 export default function Dashboard() {
   const { data: orders = [] } = useQuery({ queryKey: ['orders'], queryFn: fetchOrders });
@@ -21,6 +22,7 @@ export default function Dashboard() {
           <p>{products.length}</p>
         </div>
       </div>
+      <ProductGrid products={products} />
     </div>
   );
 }

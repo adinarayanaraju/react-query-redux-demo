@@ -13,7 +13,7 @@ export function useAuth() {
       // For this mock, we'll just assume the token is valid
       // and refetch user data if needed.
       // For now, we'll just set a dummy user if a token exists.
-      setUser({ id: 'u1', name: 'John Doe', email: 'john.doe@example.com', token: token });
+      setUser({ id: 'u1', name: 'John Doe', email: 'john.doe@example.com', phone: '123-456-7890', token: token });
     }
   }, [token]);
 
@@ -34,9 +34,9 @@ export function useAuth() {
     setToken(null);
   };
 
-  const updateUser = async (name: string, email: string) => {
+  const updateUser = async (name: string, email: string, phone: string) => {
     try {
-      const updatedUser = await updateUserProfileApi(name, email);
+      const updatedUser = await updateUserProfileApi(name, email, phone);
       setUser(updatedUser);
     } catch (error) {
       console.error('Update failed:', error);

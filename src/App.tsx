@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { Provider as ReduxProvider, useDispatch } from 'react-redux';
+import { Provider as ReduxProvider, useDispatch, useSelector } from 'react-redux';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { store, setMenuItems, MenuItem } from './store';
+import { store, setMenuItems, MenuItem, RootState } from './store';
 import HamburgerMenu from './components/HamburgerMenu';
 import Settings from './components/Settings';
 import Dashboard from './components/Dashboard';
@@ -12,6 +12,9 @@ import WishlistPage from './components/WishlistPage';
 import ProfilePage from './components/ProfilePage';
 import CheckoutPage from './components/CheckoutPage';
 import SupportPage from './components/SupportPage';
+import ReviewsPage from './components/ReviewsPage';
+import ContactPage from './components/ContactPage';
+import ProtectedRoute from './components/ProtectedRoute';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
@@ -25,31 +28,48 @@ const initialMenu: MenuItem[] = [
   { id: 'profile', name: 'Profile', visible: true, role: 'user' },
   { id: 'checkout', name: 'Checkout', visible: true, role: 'user' },
   { id: 'support', name: 'Support', visible: true, role: 'user' },
+  { id: 'contact', name: 'Contact', visible: true, role: 'user' },
   { id: 'settings', name: 'Settings', visible: true, role: 'admin' },
 ];
 
+const routeComponents: Record<string, React.ReactNode> = {
+  dashboard: <Dashboard />,
+  products: <ProductsPage />,
+  orders: <ProtectedRoute><OrdersPage /></ProtectedRoute>,
+  wishlist: <WishlistPage />,
+  profile: <ProtectedRoute><ProfilePage /></ProtectedRoute>,
+  checkout: <CheckoutPage />,
+  support: <SupportPage />,
+  contact: <ContactPage />,
+  settings: <Settings />,
+};
+
 function AppRoot() {
   const dispatch = useDispatch();
+  const theme = useSelector((state: RootState) => state.theme.theme);
+  const routes = useSelector((state: RootState) => state.menu.routes);
+  const { themeColor } = useSelector((state: RootState) => state.siteConfig);
 
   useEffect(() => {
     dispatch(setMenuItems(initialMenu));
   }, [dispatch]);
 
+  useEffect(() => {
+    document.documentElement.style.setProperty('--color-primary', themeColor);
+  }, [themeColor]);
+
   return (
-    <div className="app">
+    <div className={`app ${theme}`}>
       <HamburgerMenu />
       <main className="container">
         <Routes>
           <Route path="/" element={<h2>Welcome Home</h2>} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/products" element={<ProductsPage />} />
-          <Route path="/orders" element={<OrdersPage />} />
+          {routes.filter(r => r.visible).map(route => (
+            <Route key={route.id} path={`/${route.id}`} element={routeComponents[route.id]} />
+          ))}
+          {/* Static route for order details */}
           <Route path="/orders/:id" element={<OrderDetail />} />
-          <Route path="/wishlist" element={<WishlistPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
-          <Route path="/support" element={<SupportPage />} />
-          <Route path="/settings" element={<Settings />} />
+          <Route path="/reviews/:productId" element={<ReviewsPage />} />
         </Routes>
       </main>
     </div>

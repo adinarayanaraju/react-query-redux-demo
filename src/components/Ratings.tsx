@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { submitReview } from '../api/reviews';
-import './Ratings.css';
+import '../styles/Ratings.css';
 
 export default function Ratings({ productId }: { productId: string }) {
   const queryClient = useQueryClient();

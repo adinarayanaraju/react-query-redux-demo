@@ -16,8 +16,8 @@ const mockOrders: Order[] = [
     status: 'Delivered',
     total: 29.74,
     items: [
-      { id: 'p1', name: 'Shiny Hat', qty: 1, price: 19.99, inStock: true },
-      { id: 'p3', name: 'Sticker Pack', qty: 1, price: 9.75, inStock: true },
+      { id: 'p1', name: 'Shiny Hat', qty: 1, price: 19.99, inStock: 10 },
+      { id: 'p3', name: 'Sticker Pack', qty: 1, price: 9.75, inStock: 0 },
     ]
   },
   {
@@ -26,7 +26,7 @@ const mockOrders: Order[] = [
     status: 'Shipped',
     total: 49.50,
     items: [
-      { id: 'p2', name: 'Puffer Jacket', qty: 1, price: 49.50, inStock: true },
+      { id: 'p2', name: 'Puffer Jacket', qty: 1, price: 49.50, inStock: 5 },
     ]
   },
   {
@@ -35,7 +35,7 @@ const mockOrders: Order[] = [
     status: 'Pending',
     total: 99.99,
     items: [
-      { id: 'p4', name: 'Premium Jacket', qty: 1, price: 99.99, inStock: true },
+      { id: 'p4', name: 'Premium Jacket', qty: 1, price: 99.99, inStock: 3 },
     ]
   },
 ];
