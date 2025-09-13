@@ -36,7 +36,7 @@ export default function HamburgerMenu() {
               </li>
             ) : (
               <li key={item.id}>
-                <Link to={`/${item.id}`}>{item.name}</Link>
+                <Link to={`/${item.id}`} onClick={toggleMenu}>{item.name}</Link>
               </li>
             );
           })}

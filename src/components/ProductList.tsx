@@ -1,7 +1,7 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store';
-import { addItem } from '../store/cartSlice';
+import { useCart } from '../hooks/useCart';
 import { addToWishlist } from '../store/wishlistSlice';
 import { useProducts } from '../hooks/useProducts';
 import { useRestrictedProducts } from '../hooks/useRestrictedProducts';
@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import '../styles/ProductList.css';
 
 export default function ProductList() {
+  const { addItem } = useCart();
   const dispatch = useDispatch();
   const { data: products = [] } = useProducts();
   const { data: restricted = [] } = useRestrictedProducts();
@@ -34,7 +35,7 @@ export default function ProductList() {
             <button
               className="btn"
               disabled={!p.inStock || isRestricted(p.id)}
-              onClick={() => dispatch(addItem(p))}
+              onClick={() => addItem(p)}
             >
               Add to cart
             </button>

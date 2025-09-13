@@ -1,0 +1,15 @@
+.recent-orders {
+  margin-top: 2rem;
+}
+
+.recent-orders ul {
+  list-style: none;
+  padding: 0;
+}
+
+.recent-orders li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}

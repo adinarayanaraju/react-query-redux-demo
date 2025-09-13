@@ -3,7 +3,7 @@ import './ShipmentStatus.css';
 
 interface ShipmentProps {
   orderId: string;
-  status: 'pending' | 'shipped' | 'delivered';
+  status: 'Pending' | 'Shipped' | 'Delivered' | 'Cancelled';
 }
 
 export default function ShipmentStatus({ orderId, status }: ShipmentProps) {

@@ -47,6 +47,10 @@ export const fetchPrices = (ids: string[]): Promise<Record<string, number>> => {
   });
 };
 
+// Fetch a single product by ID
+export const fetchProductById = (productId: string): Promise<Product | undefined> =>
+  new Promise((resolve) => setTimeout(() => resolve(products.find(p => p.id === productId)), 500));
+
 // Check availability for given product IDs
 export const fetchAvailability = (ids: string[]): Promise<Record<string, number>> => {
   return new Promise((resolve) => {

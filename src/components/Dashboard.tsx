@@ -3,6 +3,8 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchOrders } from '../api/orders';
 import { fetchProducts } from '../api/products';
 import ProductGrid from './ProductGrid';
+import RecentOrders from './RecentOrders';
+import SalesChart from './SalesChart';
 import '../styles/Dashboard.css';
 
 export default function Dashboard() {
@@ -22,6 +24,8 @@ export default function Dashboard() {
           <p>{products.length}</p>
         </div>
       </div>
+      <SalesChart orders={orders} />
+      <RecentOrders orders={orders} />
       <ProductGrid products={products} />
     </div>
   );

@@ -15,6 +15,11 @@ import SupportPage from './components/SupportPage';
 import ReviewsPage from './components/ReviewsPage';
 import ContactPage from './components/ContactPage';
 import ProtectedRoute from './components/ProtectedRoute';
+import ProductDetailPage from './components/ProductDetailPage';
+import OrderTrackingPage from './components/OrderTrackingPage';
+import CouponsPage from './components/CouponsPage';
+import PaymentStatusPage from './components/PaymentStatusPage';
+import PromotionsPage from './components/PromotionsPage';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
@@ -29,6 +34,8 @@ const initialMenu: MenuItem[] = [
   { id: 'checkout', name: 'Checkout', visible: true, role: 'user' },
   { id: 'support', name: 'Support', visible: true, role: 'user' },
   { id: 'contact', name: 'Contact', visible: true, role: 'user' },
+  { id: 'coupons', name: 'Coupons', visible: true, role: 'user' },
+  { id: 'promotions', name: 'Promotions', visible: true, role: 'user' },
   { id: 'settings', name: 'Settings', visible: true, role: 'admin' },
 ];
 
@@ -41,6 +48,8 @@ const routeComponents: Record<string, React.ReactNode> = {
   checkout: <CheckoutPage />,
   support: <SupportPage />,
   contact: <ContactPage />,
+  coupons: <CouponsPage />,
+  promotions: <PromotionsPage />,
   settings: <Settings />,
 };
 
@@ -67,8 +76,11 @@ function AppRoot() {
           {routes.filter(r => r.visible).map(route => (
             <Route key={route.id} path={`/${route.id}`} element={routeComponents[route.id]} />
           ))}
-          {/* Static route for order details */}
+          {/* Static routes */}
           <Route path="/orders/:id" element={<OrderDetail />} />
+          <Route path="/products/:productId" element={<ProductDetailPage />} />
+          <Route path="/tracking/:orderId" element={<OrderTrackingPage />} />
+          <Route path="/payment-status" element={<PaymentStatusPage />} />
           <Route path="/reviews/:productId" element={<ReviewsPage />} />
         </Routes>
       </main>
